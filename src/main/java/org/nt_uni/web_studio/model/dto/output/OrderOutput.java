@@ -13,6 +13,8 @@ public class OrderOutput {
 
     private ApplicationTypeOutput applicationType;
 
+    private String code;
+
     private String description;
 
     private String customerEmail;
