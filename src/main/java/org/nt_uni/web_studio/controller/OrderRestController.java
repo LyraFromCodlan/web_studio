@@ -69,7 +69,7 @@ public class OrderRestController {
         }
     }
 
-    @PostMapping("deleteOrder/{code}")
+    @PostMapping("delete/{code}")
     public ResponseEntity deleteOrder(@PathVariable("code") String code){
         try{
             orderService.deleteOrder(code);
