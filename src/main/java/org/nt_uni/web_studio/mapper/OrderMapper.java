@@ -1,4 +1,4 @@
-package org.nt_uni.web_studio;
+package org.nt_uni.web_studio.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -10,7 +10,7 @@ import org.nt_uni.web_studio.model.dto.output.OrderOutput;
 
 @Mapper(componentModel = "spring",unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface OrderMapper {
-    void mapInputToOrder(OrderInput input, ApplicationType applicationType, @MappingTarget Order order);
+    void mapDtoToEntity(OrderInput input, ApplicationType applicationType, @MappingTarget Order order);
 
-    OrderOutput mapOrderToOutput(Order order);
+    OrderOutput mapEntityToDto(Order order);
 }

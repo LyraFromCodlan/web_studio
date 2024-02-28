@@ -1,7 +1,7 @@
 package org.nt_uni.web_studio.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.nt_uni.web_studio.OrderMapper;
+import org.nt_uni.web_studio.mapper.OrderMapper;
 import org.nt_uni.web_studio.model.base.Order;
 import org.nt_uni.web_studio.model.dto.input.OrderInput;
 import org.nt_uni.web_studio.model.dto.input.SearchOptions;
@@ -26,7 +26,7 @@ public class OrderRestController {
     public ResponseEntity getOrdersInfoBy(@RequestBody SearchOptions input){
         try {
             Collection<Order> orders = orderService.getOrdersInfoBy(input);
-            List<OrderOutput> outputs = orders.stream().map(orderMapper::mapOrderToOutput).collect(Collectors.toList());
+            List<OrderOutput> outputs = orders.stream().map(orderMapper::mapEntityToDto).collect(Collectors.toList());
 
             return new ResponseEntity<>(outputs, HttpStatus.OK);
         }catch (Exception e){
@@ -40,7 +40,7 @@ public class OrderRestController {
 
         try {
             Order order = orderService.getOrderInfoByCode(code);
-            OrderOutput output = orderMapper.mapOrderToOutput(order);
+            OrderOutput output = orderMapper.mapEntityToDto(order);
             return new ResponseEntity<>(output, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -51,7 +51,7 @@ public class OrderRestController {
     public ResponseEntity registerOrder(@RequestBody OrderInput input){
         try {
             Order order = orderService.registerOrder(input);
-            OrderOutput output = orderMapper.mapOrderToOutput(order);
+            OrderOutput output = orderMapper.mapEntityToDto(order);
             return new ResponseEntity<>(output,HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -62,7 +62,7 @@ public class OrderRestController {
     public ResponseEntity changeOrderStatus(@RequestBody OrderInput input){
         try {
             Order order = orderService.changeOrderStatus(input);
-            OrderOutput output = orderMapper.mapOrderToOutput(order);
+            OrderOutput output = orderMapper.mapEntityToDto(order);
             return new ResponseEntity<>(output, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);

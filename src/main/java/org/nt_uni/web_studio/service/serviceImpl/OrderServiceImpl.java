@@ -1,7 +1,7 @@
 package org.nt_uni.web_studio.service.serviceImpl;
 
 import lombok.RequiredArgsConstructor;
-import org.nt_uni.web_studio.OrderMapper;
+import org.nt_uni.web_studio.mapper.OrderMapper;
 import org.nt_uni.web_studio.dao.*;
 import org.nt_uni.web_studio.model.base.ApplicationType;
 import org.nt_uni.web_studio.model.base.Order;
@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
     public Order registerOrder(OrderInput input) {
         Order order = new Order();
         ApplicationType applicationType = applicationTypeRepository.findByCodeIgnoreCase(input.getApplicationTypeCode());
-        orderMapper.mapInputToOrder(input, applicationType, order);
+        orderMapper.mapDtoToEntity(input, applicationType, order);
         order = orderRepository.save(order);
         order.setCode("5"+"0".repeat(10-order.getId().toString().length())+order.getId());
         order = orderRepository.save(order);
