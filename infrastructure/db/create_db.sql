@@ -1,1 +1,1 @@
-SELECT 'CREATE DATABASE ws_order_db_test';
+CREATE DATABASE ws_order_db_test;
