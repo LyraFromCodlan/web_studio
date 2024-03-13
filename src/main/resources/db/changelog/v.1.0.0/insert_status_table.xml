@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet logicalFilePath="insert_status_table"
+               id="insert_status_table" author="n.t">
+        <insert tableName="order_status">
+            <column  name="name"  value="Зарегистрирован"/>
+            <column  name="code"  value="registered"/>
+        </insert>
+        <insert tableName="order_status">
+            <column  name="name"  value="На рассмотрении"/>
+            <column  name="code"  value="on_review"/>
+        </insert>
+        <insert tableName="order_status">
+            <column  name="name"  value="Принят"/>
+            <column  name="code"  value="accepted"/>
+        </insert>
+        <insert tableName="order_status">
+            <column  name="name"  value="В работе"/>
+            <column  name="code"  value="in_progress"/>
+        </insert>
+        <insert tableName="order_status">
+            <column  name="name"  value="На поддержке"/>
+            <column  name="code"  value="on_support"/>
+        </insert>
+        <insert tableName="order_status">
+            <column  name="name"  value="Выполнен"/>
+            <column  name="code"  value="completed"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

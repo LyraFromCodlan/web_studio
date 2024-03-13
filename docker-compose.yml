@@ -1,17 +1,8 @@
 version: '3.8'
 services:
-#  client-frontend:
-#    image: frontend:0.0.1
-#    build: ./frontend
-#    restart: always
-#    ports:
-#      - '3000:3000'
-#    volumes:
-#      - /app/node_modules
-#      - ./frontend:/app
 
   web-service:
-    image: w_service:0.0.1
+    image: w_service:0.0.2
     build:
       context: .
       dockerfile: Dockerfile
@@ -21,10 +12,10 @@ services:
       - service-db
     environment:
       - SERVER_PORT= 6060
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/ws_order_db
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db:5432/ws_order_db_test
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=20percentcooler
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
   service-db:
     image: postgres:14.7-alpine
@@ -32,14 +23,12 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 20percentcooler
     ports:
-      - "5432:5432"
-#    volumes:
-#      - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
-#      - db-data:/var/lib/postgresql/data
+      - "15432:5432"
+    volumes:
+      - ./infrastructure/db/create_db.sql:/docker-entrypoint-initdb.d/create_db.sql
+      - db-data:/var/lib/postgresql/data
     restart: unless-stopped
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
+
 
   pgadmin:
     container_name: pgadmin4_container
@@ -52,9 +41,6 @@ services:
       - "5050:80"
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
 
 volumes:
   db-data:

@@ -30,7 +30,7 @@ public class DropdownController {
         return dropdownService.getStatuses().stream().map(dropdownMapper::mapEntityToDto).collect(Collectors.toList());
     }
 
-    @GetMapping("statuses")
+    @GetMapping("softwareTypes")
     public List<SoftwareType> getSoftwareTypes(){
         return dropdownService.getSoftwareTypes();
     }

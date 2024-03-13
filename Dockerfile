@@ -1,14 +1,13 @@
 FROM maven:3.8.4-openjdk-17 as builder
-WORKDIR /web_studio_service
-COPY . /web_studio_service/.
-RUN mvn -f /web_studio_service/pom.xml clean package -Dmaven.test.skip=true
+WORKDIR /app
+COPY . /app/.
+RUN mvn -f /app/pom.xml clean package -Dmaven.test.skip=true
 
 FROM eclipse-temurin:17-jre-alpine
-WORKDIR /web_studio_service
-#COPY --from=builder /web_studio_service/target/*.jar /web_studio_service/*.jar
-COPY target/*.jar app.jar
-EXPOSE 6060 5432
-ENTRYPOINT ["java", "-jar", "/web_studio_service/app.jar"]
+WORKDIR /app
+COPY --from=builder /app/target/*.jar /app/*.jar
+EXPOSE 6060
+ENTRYPOINT ["java", "-jar", "/app/*.jar"]
 
 
 #FROM openjdk:17.0.1-jdk-slim
