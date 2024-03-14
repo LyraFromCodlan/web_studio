@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet logicalFilePath="create_table_order"
+               id="create_table_order" author="n.t">
+        <createTable tableName="ws_order">
+            <column name="order_id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="order_code" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="code" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_description" type="varchar(1500)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="customer_email" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_phone_number" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_price_range" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="estimated_production_time_month" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="is_supported" type="boolean" defaultValue="false">
+                <constraints nullable="true"/>
+            </column>
+            <column name="software_type" type="smallint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="application_type" type="varchar(255)">
+                <constraints foreignKeyName="fk_application_type_oder" references="order_application_type(code)"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

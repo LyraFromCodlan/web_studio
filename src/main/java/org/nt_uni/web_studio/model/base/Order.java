@@ -54,7 +54,7 @@ public class Order {
     private Date expirationDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "application_type")
+    @JoinColumn(name = "application_type", referencedColumnName = "code", columnDefinition = "varchar(255)")
     @Fetch(FetchMode.JOIN)
     private ApplicationType applicationType;
 

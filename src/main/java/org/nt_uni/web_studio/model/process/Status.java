@@ -15,7 +15,7 @@ import java.util.Collection;
 @Table(name = "order_status")
 public class Status {
     @Id
-    @Column(name = "code", length = 15, nullable = false, unique = true)
+    @Column(name = "code", length = 30, nullable = false, unique = true)
     private String code;
 
     @Column(name = "name")

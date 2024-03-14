@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet logicalFilePath="insert_application_type_table"
+               id="insert_application_type_table" author="n.t">
+        <insert tableName="order_application_type">
+            <column  name="name"  value="Консольное приложение"/>
+            <column  name="code"  value="CONSOLE_APPLICATION"/>
+        </insert>
+        <insert tableName="order_application_type">
+            <column  name="name"  value="Графическое приложение"/>
+            <column  name="code"  value="GRAPHIC_APPLICATION"/>
+        </insert>
+        <insert tableName="order_application_type">
+            <column  name="name"  value="Оконное приложение"/>
+            <column  name="code"  value="WINDOW_APPLICATION"/>
+        </insert>
+        <insert tableName="order_application_type">
+            <column  name="name"  value="Веб приложение"/>
+            <column  name="code"  value="WEB_APPLICATION"/>
+        </insert>
+        <insert tableName="order_application_type">
+            <column  name="name"  value="Графческий пользовательский интерфейс"/>
+            <column  name="code"  value="GUI"/>
+        </insert>
+        <insert tableName="order_application_type">
+            <column  name="name"  value="Backend приложение"/>
+            <column  name="code"  value="BACKEND"/>
+        </insert>
+        <insert tableName="order_application_type">
+            <column  name="name"  value="Frontend приложение"/>
+            <column  name="code"  value="FRONTEND"/>
+        </insert>
+        <insert tableName="order_application_type">
+            <column  name="name"  value="Программное обеспечение"/>
+            <column  name="code"  value="SOFTWARE"/>
+        </insert>
+        <insert tableName="order_application_type">
+            <column  name="name"  value="Архитектура базы данных"/>
+            <column  name="code"  value="DB_ARCHITECTURE"/>
+        </insert>
+        <insert tableName="order_application_type">
+            <column  name="name"  value="Другое"/>
+            <column  name="code"  value="OTHER"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>
