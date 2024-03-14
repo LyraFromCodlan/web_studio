@@ -20,7 +20,4 @@ public class Status {
 
     @Column(name = "name")
     private String name;
-
-    @OneToMany(mappedBy = "status")
-    private Collection<BusinessProcessStage> businessProcessStages;
 }

@@ -8,7 +8,7 @@
                id="create_table_order" author="n.t">
         <createTable tableName="ws_order">
             <column name="order_id" type="bigint">
-                <constraints nullable="false" primaryKey="true"/>
+                <constraints primaryKey="true"/>
             </column>
             <column name="order_code" type="varchar(30)">
                 <constraints nullable="false"/>

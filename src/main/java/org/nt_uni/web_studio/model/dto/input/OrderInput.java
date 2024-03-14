@@ -9,6 +9,9 @@ import java.util.Date;
 
 @Data
 public class OrderInput {
+    private String orderCode;
+
+    private String statusCode;
 
     private SoftwareType softwareType;
 

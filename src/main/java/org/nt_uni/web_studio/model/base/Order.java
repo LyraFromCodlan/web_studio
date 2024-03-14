@@ -9,6 +9,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.nt_uni.web_studio.model.enums.SoftwareType;
 import org.nt_uni.web_studio.model.process.BusinessProcess;
+import org.nt_uni.web_studio.model.process.Status;
 
 import java.util.Collection;
 import java.util.Date;
@@ -57,6 +58,11 @@ public class Order {
     @JoinColumn(name = "application_type", referencedColumnName = "code", columnDefinition = "varchar(255)")
     @Fetch(FetchMode.JOIN)
     private ApplicationType applicationType;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "order_status", referencedColumnName = "code", columnDefinition = "varchar(30)")
+    @Fetch(FetchMode.JOIN)
+    private Status status;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
     private Collection<BusinessProcess> businessProcesses;

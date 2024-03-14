@@ -7,6 +7,7 @@ import org.nt_uni.web_studio.model.base.ApplicationType;
 import org.nt_uni.web_studio.model.base.Order;
 import org.nt_uni.web_studio.model.dto.input.OrderInput;
 import org.nt_uni.web_studio.model.dto.input.SearchOptions;
+import org.nt_uni.web_studio.model.process.Status;
 import org.nt_uni.web_studio.service.OrderService;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,8 @@ public class OrderServiceImpl implements OrderService {
     public Order registerOrder(OrderInput input) {
         Order order = new Order();
         ApplicationType applicationType = applicationTypeRepository.findByCodeIgnoreCase(input.getApplicationTypeCode());
-        orderMapper.mapDtoToEntity(input, applicationType, order);
+        Status status = statusRepository.findByCodeIgnoreCase("REGISTERED");
+        orderMapper.mapDtoToEntity(input, applicationType, status,  order);
         order = orderRepository.save(order);
         order.setCode("5"+"0".repeat(10-order.getId().toString().length())+order.getId());
         order = orderRepository.save(order);
@@ -47,7 +49,14 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order changeOrderStatus(OrderInput input) {
-        return null;
+        Order order = orderRepository.findByCodeIgnoreCase(input.getOrderCode());
+        if(order != null){
+            ApplicationType applicationType = applicationTypeRepository.findByCodeIgnoreCase(input.getApplicationTypeCode());
+            Status status = statusRepository.findByCodeIgnoreCase(input.getStatusCode());
+            orderMapper.mapDtoToEntity(input, applicationType, status,  order);
+            order = orderRepository.save(order);
+        }
+        return order;
     }
 
     @Override

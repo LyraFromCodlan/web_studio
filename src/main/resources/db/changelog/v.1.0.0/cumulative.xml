@@ -8,6 +8,6 @@
     <include file="insert_status_table.xml" relativeToChangelogFile="true" />
     <include file="create_table_application_type.xml" relativeToChangelogFile="true" />
     <include file="insert_application_type_table.xml" relativeToChangelogFile="true" />
-    <include file="create_table_order.xml" relativeToChangelogFile="true" />
+<!--    <include file="create_table_order.xml" relativeToChangelogFile="true" />-->
 
 </databaseChangeLog>
