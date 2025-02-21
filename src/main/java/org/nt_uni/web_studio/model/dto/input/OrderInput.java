@@ -1,7 +1,6 @@
 package org.nt_uni.web_studio.model.dto.input;
 
 import lombok.Data;
-import org.nt_uni.web_studio.model.enums.SoftwareType;
 
 @Data
 public class OrderInput {
@@ -9,7 +8,7 @@ public class OrderInput {
 
     private String statusCode;
 
-    private SoftwareType softwareType;
+    private String softwareTypeCode;
 
     private String applicationTypeCode;
 
@@ -19,9 +18,15 @@ public class OrderInput {
 
     private String phoneNumber;
 
-    private Long priceRange;
+    private Long priceRangeMax;
+
+    private Long priceRangeMin;
 
     private Long months;
 
     private Boolean isSupported;
+
+    private String managerUsername;
+
+    private String clientUsername;
 }

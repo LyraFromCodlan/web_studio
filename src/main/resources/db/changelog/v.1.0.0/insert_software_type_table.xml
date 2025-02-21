@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet logicalFilePath="software_type_table"
+               id="insert_software_type_table" author="n.t">
+        <insert tableName="software_type">
+            <column  name="name"  value="Ios"/>
+            <column  name="code"  value="IOS"/>
+        </insert>
+        <insert tableName="software_type">
+            <column  name="name"  value="Windows"/>
+            <column  name="code"  value="WINDOWS"/>
+        </insert>
+        <insert tableName="software_type">
+            <column  name="name"  value="Debian Linux"/>
+            <column  name="code"  value="DEBIAN"/>
+        </insert>
+        <insert tableName="software_type">
+            <column  name="name"  value="Kali Linux"/>
+            <column  name="code"  value="KALI"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -35,7 +35,20 @@ public class OrderRestController {
 
     }
 
-    @GetMapping("info/{code}")
+    @GetMapping("info/all")
+    public ResponseEntity getAllOrders(){
+        try {
+            Collection<Order> orders = orderService.getAllOrders();
+            List<OrderOutput> outputs = orders.stream().map(orderMapper::mapEntityToDto).collect(Collectors.toList());
+
+            return new ResponseEntity<>(outputs, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+    @GetMapping("info/code/{code}")
     public ResponseEntity getOrderInfoByCode(@PathVariable(name = "code") String code){
 
         try {
@@ -62,6 +75,17 @@ public class OrderRestController {
     public ResponseEntity changeOrderStatus(@RequestBody OrderInput input){
         try {
             Order order = orderService.changeOrderStatus(input);
+            OrderOutput output = orderMapper.mapEntityToDto(order);
+            return new ResponseEntity<>(output, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("update")
+    public ResponseEntity updateOrder(@RequestBody OrderInput input){
+        try {
+            Order order = orderService.updateOrder(input);
             OrderOutput output = orderMapper.mapEntityToDto(order);
             return new ResponseEntity<>(output, HttpStatus.OK);
         }catch (Exception e){

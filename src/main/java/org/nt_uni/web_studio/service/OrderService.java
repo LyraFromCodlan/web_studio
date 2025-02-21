@@ -8,8 +8,10 @@ import java.util.Collection;
 
 public interface OrderService {
     Collection<Order> getOrdersInfoBy(SearchOptions input);
+    Collection<Order> getAllOrders();
     Order getOrderInfoByCode(String code);
     Order registerOrder(OrderInput input);
     Order changeOrderStatus(OrderInput input);
+    Order updateOrder(OrderInput input);
     void deleteOrder(String code);
 }

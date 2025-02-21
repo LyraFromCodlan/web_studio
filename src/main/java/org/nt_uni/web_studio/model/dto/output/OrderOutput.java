@@ -2,14 +2,13 @@ package org.nt_uni.web_studio.model.dto.output;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.nt_uni.web_studio.model.enums.SoftwareType;
 
 import java.util.Date;
 
 @Data
 public class OrderOutput {
 
-    private SoftwareType softwareType;
+    private SoftwareTypeOutput softwareType;
 
     private ApplicationTypeOutput applicationType;
 
@@ -23,7 +22,9 @@ public class OrderOutput {
 
     private String phoneNumber;
 
-    private Long priceRange;
+    private Long priceRangeMax;
+
+    private Long priceRangeMin;
 
     private Long months;
 

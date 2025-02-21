@@ -7,11 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.nt_uni.web_studio.model.enums.SoftwareType;
-import org.nt_uni.web_studio.model.process.BusinessProcess;
 import org.nt_uni.web_studio.model.process.Status;
 
-import java.util.Collection;
 import java.util.Date;
 
 
@@ -29,7 +26,9 @@ public class Order {
     @Column(name = "order_code", length = 30)
     private String code;
 
-    @Column(name = "software_type")
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "software_type", referencedColumnName = "code", columnDefinition = "varchar(10)")
     private SoftwareType softwareType;
 
     @Column(name = "order_description", length = 1500)
@@ -41,8 +40,11 @@ public class Order {
     @Column(name = "customer_phone_number", length = 15)
     private String phoneNumber;
 
-    @Column(name = "customer_price_range")
-    private Long priceRange;
+    @Column(name = "customer_price_range_max")
+    private Long priceRangeMax;
+
+    @Column(name = "customer_price_range_min")
+    private Long priceRangeMin;
 
     @Column(name = "estimated_production_time_month")
     private Long months;
@@ -64,6 +66,15 @@ public class Order {
     @Fetch(FetchMode.JOIN)
     private Status status;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
-    private Collection<BusinessProcess> businessProcesses;
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_username", referencedColumnName = "username", columnDefinition = "varchar(9)")
+    @Fetch(FetchMode.JOIN)
+    private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_username", referencedColumnName = "username", columnDefinition = "varchar(9)")
+    @Fetch(FetchMode.JOIN)
+    private Client client;
 }

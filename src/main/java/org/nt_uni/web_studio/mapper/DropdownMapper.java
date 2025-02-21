@@ -3,7 +3,9 @@ package org.nt_uni.web_studio.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.nt_uni.web_studio.model.base.ApplicationType;
+import org.nt_uni.web_studio.model.base.SoftwareType;
 import org.nt_uni.web_studio.model.dto.output.ApplicationTypeOutput;
+import org.nt_uni.web_studio.model.dto.output.SoftwareTypeOutput;
 import org.nt_uni.web_studio.model.dto.output.StatusOutput;
 import org.nt_uni.web_studio.model.process.Status;
 
@@ -11,4 +13,6 @@ import org.nt_uni.web_studio.model.process.Status;
 public interface DropdownMapper {
     ApplicationTypeOutput mapEntityToDto(ApplicationType applicationType);
     StatusOutput mapEntityToDto(Status status);
+
+    SoftwareTypeOutput mapEntityToDto(SoftwareType softwareType);
 }
